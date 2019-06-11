@@ -29,8 +29,6 @@ export default {
           console.log(rs.data.data,'rs.data.data.menuDomains')
           this.menuDomains = rs.data.data.menuDomains;
           this.mapCenter = [rs.data.data.centerLng,rs.data.data.centerLat];
-          // this.longitude = rs.data.data.centerLng;
-          // this.latitude = rs.data.data.centerLat;
           // this.adInstDomainList = rs.data.data.adInstDomainList;
           // this.avatarUrl = rs.data.data.avatarUrl;
         });
