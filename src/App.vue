@@ -19,7 +19,7 @@ export default {
       menuDomains:[],
       mapCenter:[],
     }
-  },
+  }, 
   mounted(){
     this.findScenic();
   },
