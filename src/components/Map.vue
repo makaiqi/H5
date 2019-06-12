@@ -15,7 +15,7 @@
             :events="marker.events" 
             :visible="marker.visible" 
             :draggable="marker.draggable" 
-            :vid="index">
+            :vid="index"> 
         </el-amap-marker>
       </el-amap>
     </div>
@@ -37,7 +37,7 @@ export default {
         search:'',
         amapManager,
         zoom: 13,
-        center: that.mapCenter,
+        center: [121.490624,31.238191],
         events: {
             init: (o) => {
                 o.getCity(result => {
