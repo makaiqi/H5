@@ -5,7 +5,6 @@
             :amap-manager="amapManager" 
             :center="center" 
             :zoom="zoom" 
-            :plugin="plugin" 
             :events="events"
             class="amap-demo">
         <el-amap-marker 
@@ -48,25 +47,8 @@ export default {
             'zoomchange': (e) => { console.log(e,'zoomchange=>e')},
             'click': (e) => { console.log(e,'click=>e')}
         },
-        plugin: ['ToolBar'],
-        markers: [
-            // {
-            // position: [121.59996,31.197646],
-            // events: {
-            //     click: (e) => {
-            //         console.log(e,"click marker");
-            //     },
-            //     dragend: (e) => {
-            //         console.log('---event---: dragend')
-            //         this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
-            //     }
-            // },
-            // visible: true,
-            // draggable: true,
-            // // template:'<span>6666666666666666</span>',
-            // }
-        ],
-          
+        // plugin: ['ToolBar'],
+        markers: [],
       }
     },
     watch:{
@@ -107,6 +89,7 @@ export default {
                     },
                     visible: true,
                     // draggable: true,
+                    // template:'<span>6666666666666666</span>',
                 };
                 marker.id = data[i].pointId;
                 marker.position = [data[i].lng,data[i].lat]
@@ -126,6 +109,10 @@ export default {
             }
             });
         },
+
+        markerClick(data){
+            
+        }
     }
 }
 </script>
