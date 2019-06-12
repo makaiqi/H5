@@ -8,7 +8,7 @@
             :plugin="plugin" 
             :events="events"
             class="amap-demo">
-        <!-- <el-amap-marker 
+        <el-amap-marker 
             v-for="(marker, index) in markers" 
             :key="index"
             :position="marker.position" 
@@ -16,7 +16,7 @@
             :visible="marker.visible" 
             :draggable="marker.draggable" 
             :vid="index">
-        </el-amap-marker> -->
+        </el-amap-marker>
       </el-amap>
     </div>
 </template>
@@ -37,43 +37,44 @@ export default {
         search:'',
         amapManager,
         zoom: 13,
-        center: [121.59996,31.197646],
+        center: that.mapCenter,
         events: {
             init: (o) => {
                 o.getCity(result => {
-                console.log(result,'s')
+                console.log(result,'City')
                 })
             },
-            'moveend': (e) => {},
-            'zoomchange': () => {},
-            'click': (e) => {
-                console.log(e,'click=>e')
-            }
+            'moveend': (e) => {console.log(e,'moveend=>e')},
+            'zoomchange': (e) => { console.log(e,'zoomchange=>e')},
+            'click': (e) => { console.log(e,'click=>e')}
         },
         plugin: ['ToolBar'],
         markers: [
-            {
-            position: [121.59996,31.197646],
-            events: {
-            click: (e) => {
-                console.log(e,"click marker");
-            },
-            dragend: (e) => {
-                console.log('---event---: dragend')
-                this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
-            }
-            },
-            visible: true,
-            draggable: true,
-            template:'<span>6666666666666666</span>',
-            }
+            // {
+            // position: [121.59996,31.197646],
+            // events: {
+            //     click: (e) => {
+            //         console.log(e,"click marker");
+            //     },
+            //     dragend: (e) => {
+            //         console.log('---event---: dragend')
+            //         this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+            //     }
+            // },
+            // visible: true,
+            // draggable: true,
+            // // template:'<span>6666666666666666</span>',
+            // }
         ],
           
       }
     },
     watch:{
         'mapCenter'(n,o){
-            this.center = n;
+            console.log(n,'n');
+            if(n.length>0){
+                this.center = n;
+            } 
         },  
     },
     mounted(){
@@ -94,10 +95,21 @@ export default {
                 //标点
                 let marker = {
                     // iconPath: "/static/images/dingwei.png" 
+                    position: [121.59996,31.197646],
+                    events: {
+                        click: (e) => {
+                            console.log(e,"click marker");
+                        },
+                        dragend: (e) => {
+                                console.log('---event---: dragend')
+                                this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+                        }
+                    },
+                    visible: true,
+                    // draggable: true,
                 };
                 marker.id = data[i].pointId;
-                marker.latitude = data[i].lat;
-                marker.longitude = data[i].lng;
+                marker.position = [data[i].lng,data[i].lat]
                 that.markers.push(marker);
                 //列表
                 // let pointList = {};
